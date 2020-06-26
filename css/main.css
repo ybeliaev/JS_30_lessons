@@ -1,0 +1,97 @@
+body {
+  min-height: 100vh;
+  background: rgba(251, 214, 3, 1);
+  background: linear-gradient(
+    to bottom right,
+    rgba(251, 215, 3, 0.7),
+    rgba(224, 191, 0, 1)
+  );
+  background-repeat: no-repeat;
+}
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+  background: rgba(251, 215, 3, 1);
+  box-shadow: 1px 2px 5px 0px rgba(6, 17, 133, 0.404);
+  min-height: 25vh;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: "JavaScript";
+  top: 15%;
+  left: 5%;
+  position: absolute;
+  color: #ffffff;
+  font-size: 5rem;
+  transform: rotate(35deg);
+}
+header::after {
+  content: "Кантор так себе..";
+  right: 20%;
+  bottom: 15%;
+  position: absolute;
+  color: #555657;
+  font-size: 2rem;
+  font-weight: 200;
+  transform: rotate(-15deg);
+}
+header h1 {
+  position: relative;
+}
+header h1::before {
+  content: "h1::before";
+  top: 0;
+  left: 15%;
+  position: absolute;
+  color: #555657;
+  font-size: 1rem;
+  transform: rotate(-7deg);
+  filter: blur(1.5px);
+}
+header h1::after {
+  content: "h1::after";
+  right: 10%;
+  bottom: -130%;
+  position: absolute;
+  transform: rotate(15deg);
+}
+header span {
+  position: relative;
+}
+header span::before {
+  content: "span::before";
+  top: 3rem;
+  left: 0;
+  position: absolute;
+  transform: rotate(5deg);
+}
+header span::after {
+  content: "span::after";
+  right: -5rem;
+  bottom: 3rem;
+  position: absolute;
+  transform: rotate(5deg);
+}
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.container-item {
+  padding: 1rem;
+  background-color: rgb(255, 253, 225);
+  box-shadow: 1px 2px 5px 0px rgba(6, 17, 133, 0.404);
+  position: relative;
+  transition: box-shadow 0.3s;
+}
+.container-item:hover {
+  box-shadow: 2px 4px 10px 0px rgba(6, 17, 133, 0.404);
+}
