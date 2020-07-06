@@ -1,42 +1,33 @@
-@font-face {
-  font-family: 'Most Wazted';
-  src: url('../fonts/MostWazted.woff2') format('woff2'),
-    url('../fonts/MostWazted.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-:root {
-  --main-bg-color: rgba(251, 214, 3, 1);
-  ;
-}
+@import url("./fonts.css");
+@import url("./color.css");
 
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
   background-image: url(../imgs/fon.jpg);
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-size: cover;
   /* background: var(--main-bg-color);
   background: linear-gradient(to bottom right,
       #fbd703b3,
       rgba(224, 191, 0, 1)); */
-  
+
 }
 
 h1,
 h2,
 h3 {
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 header {
+
   text-align: center;
   margin-bottom: 1rem;
-  background: rgba(251, 215, 3, 1);
+  background: var(--main-bg-color);
   box-shadow: 1px 2px 5px 0px rgba(6, 17, 133, 0.404);
-  min-height: 25vh;
+  min-height: 55vh;
   position: relative;
   overflow: hidden;
 }
