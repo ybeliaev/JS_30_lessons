@@ -40,6 +40,11 @@ header h1 {
   color: var(--title);
 }
 
+header span {
+  color: var(--title);
+  font-size: 1.5rem;
+}
+
 header::before {
   content: "parseInt(null, 24) === 23";
   font-family: 'Most Wazted';
@@ -148,10 +153,12 @@ div.alert {
 }
 
 code {
+  margin-top: 1em;
+  margin-bottom: 1em;
   font-size: 1.5rem;
   background-color: var(--white);
   color: var(--black);
-  letter-spacing: 1.6;
+  line-height: 1.6;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
 }
