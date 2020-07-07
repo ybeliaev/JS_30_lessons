@@ -19,15 +19,15 @@ h2,
 h3 {
   text-align: center;
   margin-bottom: 0.5rem;
+  color: var(--title);
 }
 
 header {
-
   text-align: center;
   margin-bottom: 1rem;
   background: var(--main-bg-color);
   box-shadow: 1px 2px 5px 0px rgba(6, 17, 133, 0.404);
-  min-height: 55vh;
+  min-height: 30vh;
   position: relative;
   overflow: hidden;
 }
@@ -35,6 +35,9 @@ header {
 
 header h1 {
   position: relative;
+  font-size: 4rem;
+  margin-top: 0.5rem;
+  color: var(--title);
 }
 
 header::before {
@@ -110,6 +113,8 @@ header span::after {
   transform: rotate(5deg);
 }
 
+/*****************************************/
+
 .container {
   width: 100%;
   max-width: 1300px;
@@ -130,6 +135,33 @@ header span::after {
   box-shadow: 2px 4px 10px 0px rgba(6, 17, 133, 0.404);
 }
 
-.container h1 {
-  font-size: 3rem;
+div.alert {
+  border-left: 8px solid var(--violet);
+  padding: 0.5rem 1rem;
+  background-color: var(--main-bg-color);
+  color: var(--violet);
+}
+
+.alert strong {
+  color: tomato;
+  text-transform: uppercase;
+}
+
+code {
+  font-size: 1.5rem;
+  background-color: var(--white);
+  color: var(--black);
+  letter-spacing: 1.6;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+
+.alert code {
+  font-size: 1.5rem;
+  background-color: var(--white);
+  color: var(--black);
+  letter-spacing: 1.6;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+
 }
