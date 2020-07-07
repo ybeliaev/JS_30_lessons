@@ -183,3 +183,10 @@ code span {
   padding-right: 0.3rem;
 
 }
+
+img {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
