@@ -2,6 +2,7 @@
 @import url("./color.css");
 
 body {
+  font-size: 17px;
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
   background-image: url(../imgs/fon.jpg);
@@ -18,13 +19,14 @@ h1,
 h2,
 h3 {
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
   color: var(--title);
 }
 
 header {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   background: var(--main-bg-color);
   box-shadow: 1px 2px 5px 0px rgba(6, 17, 133, 0.404);
   min-height: 30vh;
@@ -129,11 +131,12 @@ header span::after {
 }
 
 .container-item {
-  padding: 1rem;
+  padding: 1rem 1.2rem;
   background-color: rgb(255, 253, 225);
   box-shadow: 1px 2px 5px 0px rgba(6, 17, 133, 0.404);
   position: relative;
   transition: box-shadow 0.3s;
+  margin-bottom: var(--mb);
 }
 
 .container-item:hover {
@@ -152,22 +155,30 @@ div.alert {
   text-transform: uppercase;
 }
 
-code {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  font-size: 1.5rem;
-  background-color: var(--white);
+pre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+pre code {
+
+  font-size: 1.2rem;
+  /* background-color: var(--white); */
   color: var(--black);
-  line-height: 1.6;
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
+  line-height: 1.1;
+}
+
+code span {
+  color: var(--violet);
+  font-weight: bold;
 }
 
 .alert code {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   background-color: var(--white);
   color: var(--black);
-  letter-spacing: 1.6;
+  line-height: 1.4;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
 

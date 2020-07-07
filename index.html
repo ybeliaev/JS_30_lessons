@@ -19,10 +19,66 @@
       <span>Справка, работа с DOM..</span>
     </header>
     <section class="container-item">
-      <h2>aaaa</h2>
-      <p>asdasd</p>
-      sdfdf <code>sdfgsdfg</code>
-      <div class="alert"><p>aaaaa <code>ddd</code> Asdsdf</p> </div>
+      <h2>Прототип.</h2>
+      <p>В JavaScript объекты имеют специальное скрытое свойство <code>[[Prototype]]</code> (так оно названо в
+        спецификации), которое
+        либо равно <code>null</code>, либо ссылается на другой объект. Объект, на который ссылается
+        <code>[[Prototype]]</code>, называется "прототипом".</p>
+
+      <div class="alert">
+        <p><code>__proto__</code> — не то же самое, что <code>[[Prototype]]</code>. Это геттер/сеттер для него.</p>
+      </div>
+      <p>
+        <pre>
+        <code>          
+            let animal = {
+              eats: true,
+              walk() {
+                console.log("Animal walk");
+              }
+            };
+            
+            let rabbit = {
+              jumps: true, 
+            };
+            rabbit.__proto__ = animal;
+            
+            <span>// walk взят из прототипа</span>
+            rabbit.walk(); <span>// Animal walk </span>         
+        </code>
+      </pre>
+      </p>
+      <div class="alert">
+        <p>Цикл <code>for..in</code> перебирает как свои, так и унаследованные свойства.</p>
+        <p>Метод <code>hasOwnProperty()</code> возвращает логическое значение, указывающее, содержит ли объект указанное
+          собственное, не унаследованное свойство. Синтаксис: <code>obj.hasOwnProperty(prop)</code></p>
+        <p>Метод <code>Object.keys(obj)</code> возвращает массив строковых элементов, соответствующих именам
+          перечисляемых свойств, найденных непосредственно в самом объекте. Порядок свойств такой же, как и при ручном
+          перечислении свойств в объекте через цикл.</p>
+      </div>
+      <p>У каждой функции по умолчанию уже есть свойство "prototype".
+        По умолчанию "prototype" – объект с единственным свойством <code>constructor</code>, которое ссылается на
+        функцию-конструктор.</p>
+      <p>По умолчанию все функции имеют <code>F.prototype = { constructor: F }</code>, поэтому мы можем получить
+        конструктор объекта через свойство <code>constructor</code>.</p>
+      <div class="alert">
+        <strong>Примечание</strong>: Важно понимать, что существует различие между прототипом объекта (который доступен
+        через <code>Object.getPrototypeOf(obj)</code>(возвращает прототип (то есть, внутреннее свойство
+        <code>[[Prototype]]</code>) указанного объекта.) или через устаревшее свойство <code>__proto__</code>) и
+        свойством
+        <code>prototype</code> в функциях-конструкторах. Первое свойство является свойством каждого экземпляра, а второе
+        - свойством конструктора.
+      </div>
+      <p>Наследованные свойства это те, что определены в свойстве <code>prototype</code> (вы можете называть это
+        подпространством имен), то есть те, которые начинаются с <code>Object.prototype.</code>, а не те, которые
+        начинаются с простого <code>Object</code>. Значение свойства <code>prototype</code> - это объект, который в
+        основном представляет собой контейнер для хранения свойств и методов, которые мы хотим наследовать объектами,
+        расположенными дальше по цепочке прототипов.</p>
+      <pre><code>
+          let obj = {};
+          console.log(obj.__proto__ === Object.prototype); <span>// true</span>
+          console.log(Object.prototype.__proto__);<span> // null</span>
+        </code></pre>
     </section>
   </div>
 
