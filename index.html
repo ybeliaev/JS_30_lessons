@@ -159,6 +159,108 @@
           <code>false</code> для всех методов в <code>"prototype"</code>.</li>
         <li>Классы всегда используют <code>use strict</code>.</li>
       </ul>
+      <h3>Наследование классов</h3>
+      <pre><code>
+        class Animal {
+          constructor(name) {
+            this.speed = 0;
+            this.name = name;
+          }
+          run(speed) {
+            this.speed = speed;
+            alert(`${this.name} бежит со скоростью ${this.speed}.`);
+          }
+          stop() {
+            this.speed = 0;
+            alert(`${this.name} стоит.`);
+          }
+        }
+        
+        <span>// Наследуем от Animal указывая "extends Animal"</span>
+        class Rabbit <strong style="color:red">extends</strong> Animal {
+          hide() {
+            alert(`${this.name} прячется!`);
+          }
+        }
+        
+        let rabbit = new Rabbit("Белый кролик");
+        
+        rabbit.run(5); <span>// Белый кролик бежит со скоростью 5.</span>
+        rabbit.hide(); <span>// Белый кролик прячется!</span>>
+
+        <span>// Rabbit.prototype.__proto__ будет равен Animal.prototype, так что методы были унаследованы.</span>
+      </code></pre>
+      <div class="alert">
+        <p><code>constructor</code> - специальный метод, служащий для создания и инициализации объектов, созданных с
+          использованием <code>class</code>.</p>
+      </div>
+      <p>Согласно спецификации, если класс расширяет другой класс и не имеет конструктора, то автоматически создаётся
+        такой «пустой» конструктор:</p>
+      <pre><code>
+        class Rabbit extends Animal {          
+          constructor(...args) {
+            super(...args);
+          }
+        }
+      </code></pre>
+      <div class="alert">
+        <p>
+          Ключевое слово <code>super()</code> используется как функция, вызывающая родительский конструктор. Её
+          необходимо вызвать до первого обращения к ключевому слову <code>this</code> в теле конструктора.
+        </p>
+      </div>
+      <pre><code>
+          <span>Наследование с конструктором:</span>
+          class Animal {
+            constructor(name) {
+              this.speed = 0;
+              this.name = name;
+            }
+            display(){
+              console.log(this.name, this.speed);
+            } 
+          }
+          
+          class Rabbit extends Animal {          
+            constructor(name, earLength) {
+              super(name);
+              this.earLength = earLength;
+            }
+            display(){
+              super.display();
+              console.log("super.display() вызывает реализацию  метода из класса-родителя");
+            }
+          }          
+          
+          let rabbit = new Rabbit("Белый кролик", 10);
+          alert(rabbit.name); <span>// Белый кролик</span>
+          alert(rabbit.earLength); <span>// 10</span>
+          console.log(rabbit.display()) // <span>// Белый кролик 0 </span>
+          <span>// super.display() вызывает реализацию  метода из класса-родителя</span>
+        </code></pre>
+      <h3>Статические методы</h3>
+      <pre><code>
+          class Person{
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+            static nameToUpper(person){
+                return person.name.toUpperCase();
+            }
+            display(){
+                console.log(this.name, this.age);
+            }
+        }
+        let tom = new Person("Tom Soyer", 34);
+        let personName = Person.nameToUpper(tom);
+        console.log(personName); <span>// TOM SOYER</span>
+        </code></pre>
+      <p>В данном случае определен статический метод <code>nameToUpper()</code>. В качестве параметра он принимает
+        объект Person и переводит его имя в верхний регистр. Поскольку статический метод относится классу вцелом, а не к
+        объекту, то мы НЕ можем использовать в нем ключевое слово <code>this</code> и через него обращаться к свойствам
+        объекта.</p>
+
     </section>
   </div>
 
