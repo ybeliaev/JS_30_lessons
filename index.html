@@ -56,8 +56,9 @@
           перечисляемых свойств, найденных непосредственно в самом объекте. Порядок свойств такой же, как и при ручном
           перечислении свойств в объекте через цикл.</p>
       </div>
-      <p>У каждой функции по умолчанию уже есть свойство "prototype".
-        По умолчанию "prototype" – объект с единственным свойством <code>constructor</code>, которое ссылается на
+      <p>У каждой <strong>функции</strong> по умолчанию уже есть свойство "prototype".
+        По умолчанию "prototype" – независимый ( он не равен никакому другому ) объект с единственным свойством
+        <code>constructor</code>, которое ссылается на
         функцию-конструктор.</p>
       <p>По умолчанию все функции имеют <code>F.prototype = { constructor: F }</code>, поэтому мы можем получить
         конструктор объекта через свойство <code>constructor</code>.</p>
@@ -80,7 +81,84 @@
           console.log(Object.prototype.__proto__);<span> // null</span>
         </code></pre>
       <p>Встроенные объекты, такие как Array, Date, Function и другие, хранят свои методы в прототипах.</p>
+      <p>Вообще<code> __proto__</code> есть у всех, даже у примитивов(в таком случае создаётся временный объект..):</p>
+      <pre><code>
+        let a = 1;
+        a.__proto__ === Number.prototype // <span>true</span>
+        let b = true;
+        b.__proto__ === Boolean.prototype // <span>true</span>
+        // <span>Cоответственно понятно равенство:</span>
+        const arr-1 = []; 
+        const arr-2 = []; 
+        arr-1.__proto__ === arr-2.__proto__;
+      </code></pre>
       <img src="./imgs/js-1.png" alt="code">
+
+      <p>У каждого объекта есть прототип. Конструктор функция Foo также имеет свой собственный <code>__proto__</code>,
+        который является <code>Function.prototype</code>, и который, в свою очередь, также ссылается через свое свойство
+        <code>__proto__</code> снова на <code>Object.prototype</code>. </p>
+      <p><code>__proto__</code> ссылается на <code>prototype</code> класса, которым был создан.</p>
+      <img src="./imgs/js-2.png" alt="prototype">
+      <p><strong>Из этого вывод, что <code>prototype</code> есть только у функций ( кроме стрелочных ) и
+          класса.</strong></p>
+      <h3>Современные способы установки и прямого доступа к прототипу это:</h3>
+      <ul>
+        <li><code>Object.create(proto[, descriptors])</code> – создаёт пустой объект со свойством
+          <code>[[Prototype]]</code>, указанным как <code>proto</code> (может быть <code>null</code>), и необязательными
+          дескрипторами свойств.</li>
+        <li><code>Object.getPrototypeOf(obj)</code> – возвращает свойство [<code>[Prototype]]</code> объекта
+          <code>obj</code> (то же самое, что и геттер <code>__proto__</code>).</li>
+        <li><code>Object.setPrototypeOf(obj, proto)</code> – устанавливает свойство <code>[[Prototype]]</code> объекта
+          <code>obj</code> как <code>proto</code> (то же самое, что и сеттер <code>__proto__</code>).</li>
+      </ul>
+      <pre><code>
+              let animal = {
+          eats: true
+        };
+        
+        <span>// создаём новый объект с прототипом animal</span>
+        let rabbit = Object.create(animal);
+        
+        alert(rabbit.eats); // true
+        
+        alert(Object.getPrototypeOf(rabbit) === animal); <span>// получаем прототип объекта rabbit</span>
+        
+        Object.setPrototypeOf(rabbit, {}); <span>// заменяем прототип объекта rabbit на {}</span>
+      </code></pre>
+    </section>
+    <section class="container-item">
+      <h2>Классы.</h2>
+      <div class="alert">
+        <p>
+          В объектно-ориентированном программировании класс – это расширяемый шаблон кода для создания объектов, который
+          устанавливает в них начальные значения (свойства) и реализацию поведения (методы).<br>
+          <p style="font-style:italic">"Пикиведия"</p>
+        </p>
+      </div>
+      <pre><code>
+        function Func(name){                              
+          this.name = name
+        }
+        Func.prototype.hello = function(){
+          console.log(this.name)
+        }
+        <span>// то же самое, что и </span>
+        class Func{
+          constructor(name){
+            this.name = name
+          }
+          hello(){
+            console.log(this.name)
+          }
+        } 
+      </code></pre>
+      <h3>Отличия класса от чистой функции:</h3>
+      <ul>
+        <li>В отличие от обычных функций, конструктор класса не может быть вызван без new</li>
+        <li>Методы класса являются неперечислимыми. Определение класса устанавливает флаг <code>enumerable</code> в
+          <code>false</code> для всех методов в <code>"prototype"</code>.</li>
+        <li>Классы всегда используют <code>use strict</code>.</li>
+      </ul>
     </section>
   </div>
 

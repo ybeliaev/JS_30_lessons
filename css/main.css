@@ -162,9 +162,10 @@ pre {
 }
 
 pre code {
-
+  /* padding-left: 1rem; */
+  padding-right: 1rem;
   font-size: 1.2rem;
-  /* background-color: var(--white); */
+  background-color: rgb(255, 255, 255);
   color: var(--black);
   line-height: 1.1;
 }
