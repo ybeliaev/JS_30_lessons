@@ -312,9 +312,9 @@
         <li>Шаг 7: Итак, callback отправлен в стек запросов, так как он был пуст и свободен. И тут же выполнился.</li>
         <li>Шаг 8: Далее идет выполнение кода <code>console.log("Siddhartha")</code>, который находится в области
           видимости callback, следовательно, <code>console.log("Siddhartha")</code> отправляется в стек запросов.</li>
-        <li>Шаг 9: После того, как <code>console.log("Siddhartha")</cod> выполнен, он выкидывается из стека запросов и
-            JavaScript приходит к завершению выполнения callback. Который в свою очередь после своего завершения будет
-            выкинут из стека запросов. А вот и ответ на вопрос как.</li>
+        <li>Шаг 9: После того, как <code>console.log("Siddhartha")</code> выполнен, он выкидывается из стека запросов и
+          JavaScript приходит к завершению выполнения callback. Который в свою очередь после своего завершения будет
+          выкинут из стека запросов. А вот и ответ на вопрос как.</li>
       </ol>
       <div class="alert">Callback - обратные вызовы (или колбэки) — общепринятое название для функций в JavaScript. Это
         не особая функция, которая называется «обратный вызов», а соглашение. Вместо того, чтобы сразу же вернуть
@@ -328,7 +328,53 @@
       <div class="alert">
         <p>Промис это объект, который представляет собой асинхронный таск, который должен завершиться.</p>
       </div>
-      <p>asaa...</p>
+      <pre><code>
+        function buyCoffee() {
+          return new Promise((resolve, reject) => {
+            asyncronouslyGetCoffee(function(coffee) {
+              resolve(coffee);
+            });
+          });
+        }
+      </code></pre>
+      <p><code>buyCoffee</code> возвращает промис, который является процессом покупки кофе. Функция <code>resolve</code>
+        указывает промису на то, что он выполнен с результатом <code>coffee</code></p>
+      <div class="alert">
+        <h4>Может быть что-то одно: либо результат, либо ошибка:</h4>
+        <p>Исполнитель должен вызвать что-то одно: <code>resolve</code> или <code>reject</code>. Состояние промиса может
+          быть изменено только один раз. Все последующие вызовы <code>resolve</code> и <code>reject</code> будут
+          проигнорированы</p>
+      </div>
+      <p>Метод <code>then()</code> возвращает <code>Promise</code>. Использование метода <code>then</code>:</p>
+
+      <pre><code>
+        p.then(onFulfilled, onRejected);
+
+        p.then(function(value) {
+            <span>// выполнение</span>
+        }, function(reason) {
+            <span>// отказ</span>
+          });
+      </code></pre>
+      <pre><code>
+        var p1 = new Promise(function(resolve, reject) {
+          resolve("Успех!");
+          <span>// или</span>
+          <span>// reject("Ошибка!");</span>
+        });
+        
+        p1.then(function(value) {
+          console.log(value); <span>// Успех!</span>
+        }, function(reason) {
+          console.log(reason); <span>// Ошибка!</span>
+        });
+      </code></pre>
+      <img src="" alt="">
+      <img src="./imgs/js-5.png" alt="promise">
+      <p class="center">Вызов:</p>
+      <img src="./imgs/js-6.png" alt="promise">
+      <p class="center">Результат:</p>
+      <img src="./imgs/js-7.png" alt="promise" style="width:20%">
     </section>
 
     <!-- the end -->
